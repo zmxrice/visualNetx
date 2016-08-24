@@ -1,2 +1,2 @@
 # visualNetx
-This is a GUI system build on Tkinter, and methods offered are based on Networkx
+After struggling a few days with Tkinter, I switch the design, using Electron + Flask instead
