@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../static/css/lib/bootstrap.min.css">
+
+    <title>Visual Network Project</title>
+  </head>
+
+  <body ng-app="visualNetx">
+    <div class="container" ng-controller="netCtrl">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#genGraph">Graph Generator</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#impGraph">Import Graph</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="genGraph" class="tab-pane fade in active">
+          <div style="margin-top:20px">
+            <span us-spinner spinner-key="spinner-1"></span>
+            <h4>A list of graph generation method is listed
+              <a href="http://networkx.readthedocs.io/en/networkx-1.11/reference/generators.html" target="_blank">here</a>
+            </h4>
+            <h5>Sample Usage: complete_graph(10) </h5>
+            <input id="txtUserAction" type="text" class="form-control input-normal" placeholder="put your method here" ng-model="action"/>
+            <button class="btn btn-primary" id="btnSubmit" style="margin-top:5px;">OK</button><h5 id="error" style="color:red"></h5>
+            <svg width="960" height="600"></svg>
+          </div>
+        </div>
+        <div id="impGraph" class="tab-pane fade">
+          <button class="btn btn-primary" id="btnImport">Import</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="../static/js/lib/jquery-3.1.0.min.js"></script>
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/angular.min.js"></script>
+    <script src="../static/js/lib/d3.v4.min.js"></script>
+
+    <!-- app.js should be imported last-->
+    <script src="../static/js/lib/spin.min.js"></script>
+    <script src="../static/js/lib/angular-spinner.min.js"></script>
+    <script src="../static/js/graph.js"></script>
+    <script src="../static/js/app.js"></script>
+  </body>
+</html>
