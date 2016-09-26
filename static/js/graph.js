@@ -1,7 +1,8 @@
 var clearGraph = function(){
   var svg = d3.select("svg");
   svg.selectAll("*").remove();
-}
+};
+
 var createGraph = function(graph){
   var svg = d3.select("svg"),
       width = +svg.attr("width"),
@@ -72,4 +73,8 @@ var createGraph = function(graph){
     d.fx = null;
     d.fy = null;
   }
+};
+
+var scaleNodeSize = function(){
+  
 };

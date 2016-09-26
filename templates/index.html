@@ -36,7 +36,14 @@
           </div>
         </div>
         <div id="impGraph" class="tab-pane fade">
-          <button class="btn btn-primary" id="btnImport">Import</button>
+          <div style="margin-top:20px">
+            <button class="btn btn-primary btn-sm" type="file" ngf-select="uploadFiles($file, $invalidFiles)" ngf-max-height="1000" ngf-max-size="1MB">Select File</button>
+            <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                <div class="progress" ng-show="f.progress >= 0">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': f.progress + '%' }"></div>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,6 +53,10 @@
     <script src="../static/js/lib/bootstrap.min.js"></script>
     <script src="../static/js/lib/angular.min.js"></script>
     <script src="../static/js/lib/d3.v4.min.js"></script>
+
+    <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+    <script src="../static/js/lib/ng-file-upload-shim.min.js"></script>
+    <script src="../static/js/lib/ng-file-upload.min.js"></script>
 
     <!-- app.js should be imported last-->
     <script src="../static/js/lib/spin.min.js"></script>
