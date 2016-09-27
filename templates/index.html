@@ -30,9 +30,27 @@
               <a href="http://networkx.readthedocs.io/en/networkx-1.11/reference/generators.html" target="_blank">here</a>
             </h4>
             <h5>Sample Usage: complete_graph(10) </h5>
-            <input id="txtUserAction" type="text" class="form-control input-normal" placeholder="put your method here" ng-model="action"/>
-            <button class="btn btn-primary" id="btnSubmit" style="margin-top:5px;">OK</button><h5 id="error" style="color:red"></h5>
+            <div class="row">
+              <div class="col-md-8">
+                <input id="txtUserAction" type="text" class="form-control input-normal" placeholder="put your method here" ng-model="action"/>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary" id="btnSubmit">Generate Graph</button> <b id="error" style="color:red"></b>
+              </div>
+            </div>
             <svg width="960" height="600"></svg>
+
+            <div id="divExport" class="row" style="visibility:hidden">
+              <div class="col-md-3">
+                <select class="form-control" id="selectFmat">
+                  <option value="adjlist">Ajacency List</option>
+                  <option value="edgelist">Edge List</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary" id="btnExport">Export Graph</button>
+              </div>
+            </div>
           </div>
         </div>
         <div id="impGraph" class="tab-pane fade">
