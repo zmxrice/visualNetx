@@ -52,21 +52,16 @@ def export_graph():
         requestFormat = request.json['fmat']
         filename = str(int(time.time()))
         #choose graph generator based on user selection
-        if requestFormat == "adjlist":
-            filename += ".adjlist"
-            fPath = os.path.join(app.config['GENERATE_FOLDER'], filename)
-            fh=open(fPath,'wb')
-            nx.write_adjlist(app.config['GENERATED_GRAPH'], fh)
-            fh.close()
-
-        elif requestFormat == "edgelist":
-            filename += ".edgelist"
-            fPath = os.path.join(app.config['GENERATE_FOLDER'], filename)
-            fh=open(fPath,'wb')
-            nx.write_edgelist(app.config['GENERATED_GRAPH'], fh)
-            fh.close()
-
+        if requestFormat == "pajek":
+            filename += ".net"
+        else:
+            filename += '.' + requestFormat
+        fPath = os.path.join(app.config['GENERATE_FOLDER'], filename)
+        fh=open(fPath,'wb')
+        eval("nx.write_"+requestFormat+"(app.config['GENERATED_GRAPH'], fh)")
+        fh.close()
         return url_for('generated_file',filename=filename)
+
     else:
         return "error"
 
