@@ -8,6 +8,7 @@ from networkx.readwrite import json_graph
 
 UPLOAD_FOLDER = 'upload/'
 GENERATE_FOLDER = 'generate/'
+ALLOWED_EXTENSIONS = set(['adjlist', 'edgelist','gexf','gml','gpickle','graphml','yaml','net'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -41,10 +42,16 @@ def upload_graph():
         return "error"
     if file:
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        gFile = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print gFile
-        return "success"
+        extension = filename.rsplit('.', 1)[1]
+        if extension in ALLOWED_EXTENSIONS:
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            G = None
+            if extension == "net":
+                G = nx.read_pajek(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            else:
+                G = eval("nx.read_"+extension+"(os.path.join(app.config['UPLOAD_FOLDER'], filename))")
+            data = json_graph.node_link_data(G)
+            return json.dumps(data)
 
 @app.route('/exportGraph', methods=['POST'])
 def export_graph():

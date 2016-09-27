@@ -38,7 +38,7 @@
                 <button class="btn btn-primary" id="btnSubmit">Generate Graph</button> <b id="error" style="color:red"></b>
               </div>
             </div>
-            <svg width="960" height="600"></svg>
+            <svg width="960" height="600" id="svgGen"></svg>
 
             <div id="divExport" class="row" style="visibility:hidden">
               <div class="col-md-3">
@@ -61,13 +61,15 @@
         </div>
         <div id="impGraph" class="tab-pane fade">
           <div style="margin-top:20px">
-            <button class="btn btn-primary btn-sm" type="file" ngf-select="uploadFiles($file, $invalidFiles)" ngf-max-height="1000" ngf-max-size="1MB">Select File</button>
-            <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+            <button class="btn btn-primary btn-sm" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+            ngf-pattern="'.adjlist,.edgelist,.gexf,.gml,.gpickle,.graphml,.yaml,.net'" ngf-max-height="1000" ngf-max-size="2MB">Select File</button>
+            <div style="font:smaller">{{f.name}} <span id="uploadErr" style="color:red">{{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}</span>
                 <div class="progress" ng-show="f.progress >= 0">
                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': f.progress + '%' }"></div>
                 </div>
             </div>
           </div>
+          <svg width="960" height="600" id="svgImp"></svg>
         </div>
       </div>
     </div>

@@ -15,10 +15,10 @@ app.controller("netCtrl", function($scope, $http, usSpinnerService, Upload, $tim
       data: { 'userAction': $scope.action }
     }).then(function(response) {
       // clear the graph using method from graph.js
-      clearGraph();
+      clearGraph('#svgGen');
       if(response.data !="error"){
         // create a new graph using method from graph.js
-        createGraph(response.data);
+        createGraph(response.data, '#svgGen');
         $('#error').text("");
         $('#divExport').css('visibility', 'visible');
       }else{
@@ -48,6 +48,7 @@ app.controller("netCtrl", function($scope, $http, usSpinnerService, Upload, $tim
   });
 
   $scope.uploadFiles = function(file, errFiles) {
+    clearGraph('#svgImp');
     $scope.f = file;
     $scope.errFile = errFiles && errFiles[0];
     if (file) {
@@ -58,8 +59,12 @@ app.controller("netCtrl", function($scope, $http, usSpinnerService, Upload, $tim
 
         file.upload.then(function (response) {
             $timeout(function () {
-                file.result = response.data;
-                console.log(file.result);
+              if(response.data !="error"){
+                // create a new graph using method from graph.js
+                createGraph(response.data, '#svgImp');
+              }else{
+                console.log("error");
+              }
             });
         }, function (response) {
             if (response.status > 0)
