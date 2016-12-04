@@ -65,7 +65,6 @@ app.controller("netCtrl", function($scope, $http, usSpinnerService, Upload, $tim
      .attr('height', 600)
      .node();
 
-
     img.onload = function(){
       // Now that the image has loaded, put the image into a canvas element.
       var canvas = d3.select('body').append('canvas').node();
@@ -78,6 +77,7 @@ app.controller("netCtrl", function($scope, $http, usSpinnerService, Upload, $tim
       a.download = "export_"+d.getTime()+".png";
       a.href = canvas.toDataURL("image/png");
       a.click();
+      //remove the temporily created elements
       $(a).remove();
       $(canvas).remove();
     }
